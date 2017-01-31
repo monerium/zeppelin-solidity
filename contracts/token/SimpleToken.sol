@@ -17,10 +17,10 @@ contract SimpleToken is StandardToken {
   string public symbol = "SIM";
   uint public decimals = 18;
   uint public INITIAL_SUPPLY = 10000;
-  
+
   function SimpleToken() {
-    totalSupply = INITIAL_SUPPLY;
-    balances[msg.sender] = INITIAL_SUPPLY;
+    token.totalSupply = INITIAL_SUPPLY;
+    token.balances[msg.sender] = INITIAL_SUPPLY;
   }
 
 }
