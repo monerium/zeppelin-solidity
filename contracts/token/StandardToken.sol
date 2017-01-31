@@ -22,8 +22,7 @@ import './ERC20Lib.sol';
    uint public INITIAL_SUPPLY = 10000;
 
    function StandardToken() {
-     token.totalSupply = INITIAL_SUPPLY;
-     token.balances[msg.sender] = INITIAL_SUPPLY;
+     token.init(INITIAL_SUPPLY);
    }
 
    function totalSupply() constant returns (uint) {

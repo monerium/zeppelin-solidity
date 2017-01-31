@@ -14,6 +14,11 @@ library ERC20Lib {
   event Transfer(address indexed from, address indexed to, uint value);
   event Approval(address indexed owner, address indexed spender, uint value);
 
+  function init(TokenStorage storage self, uint _initial_supply) {
+    self.totalSupply = _initial_supply;
+    self.balances[msg.sender] = _initial_supply;
+  }
+
   function transfer(TokenStorage storage self, address _to, uint _value) internal returns (bool success) {
     self.balances[msg.sender] = self.balances[msg.sender].minus(_value);
     self.balances[_to] = self.balances[_to].plus(_value);
