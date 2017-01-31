@@ -1,4 +1,4 @@
-pragma solidity ^0.4.4;
+pragma solidity ^0.4.6;
 
 
 import './ERC20Lib.sol';
@@ -21,7 +21,7 @@ import './ERC20Lib.sol';
    uint public decimals = 18;
    uint public INITIAL_SUPPLY = 10000;
 
-   function SimpleToken() {
+   function StandardToken() {
      token.totalSupply = INITIAL_SUPPLY;
      token.balances[msg.sender] = INITIAL_SUPPLY;
    }
