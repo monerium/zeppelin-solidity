@@ -19,14 +19,14 @@ library ERC20Lib {
     self.balances[msg.sender] = _initial_supply;
   }
 
-  function transfer(TokenStorage storage self, address _to, uint _value) internal returns (bool success) {
+  function transfer(TokenStorage storage self, address _to, uint _value) returns (bool success) {
     self.balances[msg.sender] = self.balances[msg.sender].minus(_value);
     self.balances[_to] = self.balances[_to].plus(_value);
     Transfer(msg.sender, _to, _value);
     return true;
   }
 
-  function transferFrom(TokenStorage storage self, address _from, address _to, uint _value) internal returns (bool success) {
+  function transferFrom(TokenStorage storage self, address _from, address _to, uint _value) returns (bool success) {
     var _allowance = self.allowed[_from][msg.sender];
 
     self.balances[_to] = self.balances[_to].plus(_value);
@@ -36,17 +36,17 @@ library ERC20Lib {
     return true;
   }
 
-  function balanceOf(TokenStorage storage self, address _owner) internal constant returns (uint balance) {
+  function balanceOf(TokenStorage storage self, address _owner) constant returns (uint balance) {
     return self.balances[_owner];
   }
 
-  function approve(TokenStorage storage self, address _spender, uint _value) internal returns (bool success) {
+  function approve(TokenStorage storage self, address _spender, uint _value) returns (bool success) {
     self.allowed[msg.sender][_spender] = _value;
     Approval(msg.sender, _spender, _value);
     return true;
   }
 
-  function allowance(TokenStorage storage self, address _owner, address _spender) internal constant returns (uint remaining) {
+  function allowance(TokenStorage storage self, address _owner, address _spender) constant returns (uint remaining) {
     return self.allowed[_owner][_spender];
   }
 }
