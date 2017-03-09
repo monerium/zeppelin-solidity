@@ -27,13 +27,9 @@ contract WrappedToken is StandardToken {
     if (!token.transfer(receiver, amount)) throw;
   }
 
-  /*
-  // Doesn't work :(
   function totalSupply() constant returns (uint) {
     return token.totalSupply();
   }
-  */
-
 
   ERC20 token;
 }

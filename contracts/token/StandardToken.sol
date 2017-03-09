@@ -17,6 +17,12 @@ contract StandardToken is ERC20, SafeMath {
   mapping(address => uint) balances;
   mapping (address => mapping (address => uint)) allowed;
 
+  uint public supply;
+
+  function totalSupply() constant returns (uint) {
+    return supply;
+  }
+
   function transfer(address _to, uint _value) returns (bool success) {
     balances[msg.sender] = safeSub(balances[msg.sender], _value);
     balances[_to] = safeAdd(balances[_to], _value);
