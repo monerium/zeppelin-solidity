@@ -4,7 +4,7 @@ import "./StandardToken.sol";
 
 contract WrappedToken is StandardToken {
   function WrappedToken(address _token) {
-    token = StandardToken(_token);
+    token = ERC20(_token);
   }
 
   // previous to wrap msg.sender must create an allowance for wrapper
@@ -23,5 +23,5 @@ contract WrappedToken is StandardToken {
     if (!token.transfer(msg.sender, amount)) throw;
   }
 
-  StandardToken token;
+  ERC20 token;
 }
