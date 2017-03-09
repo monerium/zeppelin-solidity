@@ -17,10 +17,14 @@ contract WrappedToken is StandardToken {
   }
 
   function unwrap(uint amount) {
+    unwrapAndTransfer(msg.sender, amount);
+  }
+
+  function unwrapAndTransfer(address receiver, uint amount) {
     // if (amount > balances[msg.sender]) throw; // Implicitely checked by safeSub(balance[msg.sender], amount)
     totalSupply = safeSub(totalSupply, amount);
     balances[msg.sender] = safeSub(balances[msg.sender], amount);
-    if (!token.transfer(msg.sender, amount)) throw;
+    if (!token.transfer(receiver, amount)) throw;
   }
 
   ERC20 token;
