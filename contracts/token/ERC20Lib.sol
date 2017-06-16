@@ -11,6 +11,7 @@ library ERC20Lib {
         uint totalSupply;
     }
 
+    // external
     function init(TokenStorage storage self, address _caller, uint _initial_supply) {
         self.totalSupply = _initial_supply;
         self.balances[_caller] = _initial_supply;
@@ -49,6 +50,7 @@ library ERC20Lib {
     }
 
     function approve(TokenStorage storage self, address _caller, address _spender, uint _value) 
+        constant
         returns (bool success) 
     {
         self.allowed[_caller][_spender] = _value;
@@ -56,7 +58,10 @@ library ERC20Lib {
         return true;
     }
 
-    function allowance(TokenStorage storage self, address _owner, address _spender) constant returns (uint remaining) {
+    function allowance(TokenStorage storage self, address _owner, address _spender) 
+        constant 
+        returns (uint remaining) 
+    {
         return self.allowed[_owner][_spender];
     }
 
