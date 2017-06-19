@@ -1,23 +1,24 @@
 pragma solidity ^0.4.4;
 
+import "./EternalTokenStorage.sol";
 import "../SafeMathLib.sol";
 
 library ERC20Lib {
     using SafeMathLib for uint;
 
-    struct TokenStorage {
-        mapping (address => uint) balances;
-        mapping (address => mapping (address => uint)) allowed;
-        uint totalSupply;
-    }
+    // struct EternalTokenStorage.TokenStorage {
+        // mapping (address => uint) balances;
+        // mapping (address => mapping (address => uint)) allowed;
+        // uint totalSupply;
+    // }
 
     // external
-    function init(TokenStorage storage self, address _caller, uint _initial_supply) {
+    function init(EternalTokenStorage.TokenStorage storage self, address _caller, uint _initial_supply) {
         self.totalSupply = _initial_supply;
         self.balances[_caller] = _initial_supply;
     }
 
-    function transfer(TokenStorage storage self, address _caller, address _to, uint _value) 
+    function transfer(EternalTokenStorage.TokenStorage storage self, address _caller, address _to, uint _value) 
         returns (bool success) 
     {
         self.balances[_caller] = self.balances[_caller].minus(_value);
@@ -27,7 +28,7 @@ library ERC20Lib {
     }
 
     function transferFrom(
-        TokenStorage storage self, 
+        EternalTokenStorage.TokenStorage storage self, 
         address _caller, 
         address _from, 
         address _to, 
@@ -42,14 +43,14 @@ library ERC20Lib {
         return true;
     }
 
-    function balanceOf(TokenStorage storage self, address _owner) 
+    function balanceOf(EternalTokenStorage.TokenStorage storage self, address _owner) 
         constant 
         returns (uint balance) 
     {
         return self.balances[_owner];
     }
 
-    function approve(TokenStorage storage self, address _caller, address _spender, uint _value) 
+    function approve(EternalTokenStorage.TokenStorage storage self, address _caller, address _spender, uint _value) 
         constant
         returns (bool success) 
     {
@@ -58,7 +59,7 @@ library ERC20Lib {
         return true;
     }
 
-    function allowance(TokenStorage storage self, address _owner, address _spender) 
+    function allowance(EternalTokenStorage.TokenStorage storage self, address _owner, address _spender) 
         constant 
         returns (uint remaining) 
     {
