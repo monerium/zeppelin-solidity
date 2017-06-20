@@ -6,7 +6,7 @@ import "../SafeMathLib.sol";
 library ERC20Lib {
     using SafeMathLib for uint;
 
-    // struct TokenStorage {
+    // struct EternalTokenStorage.TokenStorage {
         // mapping (address => uint) balances;
         // mapping (address => mapping (address => uint)) allowed;
         // uint totalSupply;
